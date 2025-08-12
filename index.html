@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natália Freire - Nutricionista Esportiva</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/imgs/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Arimo:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <style>
+        body { 
+            font-family: 'Arimo', sans-serif; 
+            background-color: #F8F6F4; 
+            color: #333; 
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Lora', serif; 
+        }
+        .font-script { 
+            font-family: 'Allura', cursive; 
+        }
+
+        /* Paleta de Cores */
+        .brand-primary { color: #98765B; } 
+        .bg-brand-primary { background-color: #98765B; } 
+        .border-brand-primary { border-color: #98765B; }
+        .brand-accent { color: #ACB19D; } 
+        .bg-brand-accent { background-color: #ACB19D; }
+        .bg-brand-light { background-color: #E6DED1; }
+        .fill-brand-light { fill: #E6DED1; }
+        .fill-white { fill: #FFFFFF; }
+        .fill-brand-light-alt { fill: #F8F6F4; }
+
+        .btn-primary {
+            background-color: #98765B;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            letter-spacing: 0.05em;
+        }
+
+        /* NOVAS CLASSES DE BOTÃO PARA CORRIGIR O HOVER */
+        .btn-ghost-white {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-ghost-white:hover {
+            background-color: white;
+            color: #98765B; /* brand-primary */
+        }
+        .btn-ghost-primary {
+            background-color: transparent;
+            color: #98765B; /* brand-primary */
+            border: 2px solid #98765B;
+        }
+        .btn-ghost-primary:hover {
+            background-color: #98765B;
+            color: white;
+        }
+
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        .reveal.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        
+        .hero-bg { 
+            background-size: cover; 
+            background-position: center; 
+            position: relative; 
+        }
+        .hero-bg::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+        .hero-content { 
+            position: relative; 
+            z-index: 10; 
+        }
+        
+        .swiper-pagination-bullet-active { 
+            background-color: #98765B !important; 
+        }
+        .modal { 
+            transition: opacity 0.25s ease; 
+        }
+
+        .section-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .section-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 90px;
+        }
+
+        /* Estilos do Menu Lateral */
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        #overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Botão do Menu Lateral Fixo -->
+    <button id="menu-btn" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-[60] p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md">
+        <i data-lucide="menu" class="h-6 w-6 text-brand-primary"></i>
+    </button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform translate-x-full z-50 p-8 flex flex-col">
+        <button id="close-btn" class="absolute top-4 right-4 text-gray-600 hover:text-black">
+            <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+        <nav class="flex flex-col space-y-6 text-lg mt-12">
+            <a href="/sobre.html" class="text-gray-700 hover:text-brand-primary transition-colors">Sobre</a>
+            <a href="/consultas.html" class="text-gray-700 hover:text-brand-primary transition-colors">Serviços</a>
+            <a href="#contato" class="text-gray-700 hover:text-brand-primary transition-colors">Contato</a>
+        </nav>
+        <div class="mt-auto">
+             <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="bg-brand-primary text-white font-semibold py-3 px-5 rounded-full shadow-md hover:scale-105 transition-transform text-sm w-full block text-center">Agendar Consulta</a>
+        </div>
+    </aside>
+
+    <main id="main-content">
+        <!-- Seção Hero -->
+        <section id="home" class="hero-bg text-white relative" style="background-image: url('/imgs/fundo.png');">
+            <!-- Logo movida para o Hero -->
+            <div class="absolute top-0 left-0 p-4 sm:p-6 lg:p-8 z-20">
+                <a href="#">
+                    <img src="/imgs/nome2.png" alt="Logo Natália Freire" class="h-12 sm:h-14 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/180x50/transparent/FFFFFF?text=Logo';">
+                </a>
+            </div>
+
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen pt-32 pb-12 md:pt-0 md:pb-0">
+                <!-- Conteúdo de texto da Hero -->
+                <div class="text-center md:text-left w-full md:w-5/12 lg:w-1/2">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Performance que começa na sua saúde</h1>
+                    <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto md:mx-0">Nutrição esportiva e funcional para atletas que buscam superar limites com equilíbrio e bem-estar.</p>
+                    <!-- BOTÃO DO HERO CORRIGIDO -->
+                    <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="btn-ghost-white font-semibold text-lg py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 inline-block">Agende sua Consulta</a>
+                </div>
+                <!-- Imagem da Hero (visível em tablet e desktop) -->
+                <div class="w-full md:w-7/12 lg:w-1/2 hidden md:flex justify-center lg:justify-end self-end">
+                    <img src="/imgs/nat.png" alt="Foto da Natália Freire" class="max-h-[90vh] w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/600x800/transparent/FFFFFF?text=Foto';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="py-20 md:py-32 bg-white relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 md:gap-16 items-center reveal z-10 relative">
+                <div class="order-2 md:order-1 text-center md:text-left">
+                    <img src="/imgs/nf.png" alt="Monograma Natália Freire" class="mx-auto md:mx-0 mb-6 h-24 w-24 rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/150x150/E6DED1/98765B?text=NF';">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-6">Uma nutricionista apaixonada por performance</h2>
+                    <p class="mb-8 text-gray-700 max-w-xl mx-auto md:mx-0">Minha jornada no triathlon me ensinou que a verdadeira performance é construída sobre uma base de saúde sólida. Como nutricionista, minha missão é levar esse conhecimento para atletas e pessoas ativas, traduzindo a ciência da nutrição em resultados reais.</p>
+                    <a href="/sobre.html" class="btn-primary">Conheça minha história</a>
+                </div>
+                <div class="order-1 md:order-2">
+                    <img src="/imgs/nat1.png" alt="Nutricionista com alimentos saudáveis" class="rounded-3xl shadow-xl w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x700/?portrait,professional';">
+                </div>
+            </div>
+            <!-- Divisor de seção -->
+            <div class="section-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-brand-light"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Seção Serviços -->
+        <section id="servicos" class="py-20 md:py-32 bg-brand-light relative overflow-hidden">
+            <!-- Imagem decorativa (visível apenas em telas 2xl) -->
+            <img src="/imgs/bike.png" alt="Ciclistas" class="hidden 2xl:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Consultas e Acompanhamento</h2>
+                    <p class="text-gray-600">Atendimentos online ou presenciais, pensados para a sua rotina e seus objetivos. O mesmo cuidado, onde quer que você esteja.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-white p-8 rounded-3xl shadow-lg text-center flex flex-col">
+                        <div class="flex-grow">
+                            <i data-lucide="laptop" class="h-12 w-12 text-brand-accent mx-auto mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-3 text-brand-primary">Consulta Online</h3>
+                            <p class="text-gray-600 mb-8">A mesma qualidade e atenção, com a praticidade do atendimento remoto.</p>
+                        </div>
+                        <!-- BOTÃO "SAIBA MAIS" CORRIGIDO -->
+                        <a href="consultas.html#online" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-sm mt-4 inline-block">Saiba Mais</a>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-lg text-center flex flex-col">
+                        <div class="flex-grow">
+                           <i data-lucide="user-check" class="h-12 w-12 text-brand-accent mx-auto mb-4"></i>
+                            <h3 class="text-2xl font-bold text-brand-primary mb-3">Consulta Presencial</h3>
+                            <p class="text-gray-600 mb-8">Avaliação corporal completa por dobras cutâneas para máxima precisão.</p>
+                        </div>
+                        <!-- BOTÃO "SAIBA MAIS" CORRIGIDO -->
+                        <a href="consultas.html#presencial" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-sm mt-4 inline-block">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-white"></path>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- Seção Como Funciona -->
+        <section id="como-funciona" class="py-20 md:py-32 bg-white relative overflow-hidden">
+            <!-- Imagem decorativa (visível apenas em telas 2xl) -->
+            <img src="/imgs/comida.png" alt="Prato Saudável" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x400/transparent/000000?text=Imagem';">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Seu Caminho para a Alta Performance</h2>
+                    <p class="text-gray-600">Um processo simples e estruturado, focado em resultados.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto text-center">
+                    <div class="p-6">
+                        <div class="relative inline-block mb-4">
+                            <i data-lucide="calendar-check" class="h-16 w-16 text-brand-accent"></i>
+                            <span class="absolute -top-2 -right-2 bg-brand-primary text-white h-8 w-8 rounded-full flex items-center justify-center text-lg font-bold border-4 border-white">1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-primary mt-4 mb-2">Agendamento e Análise</h3>
+                        <p class="text-gray-600">Nosso primeiro passo é agendar a consulta e enviar um questionário pré-consulta para entendermos seus objetivos e rotina.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="relative inline-block mb-4">
+                            <i data-lucide="clipboard-list" class="h-16 w-16 text-brand-accent"></i>
+                             <span class="absolute -top-2 -right-2 bg-brand-primary text-white h-8 w-8 rounded-full flex items-center justify-center text-lg font-bold border-4 border-white">2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-primary mt-4 mb-2">Consulta Detalhada</h3>
+                        <p class="text-gray-600">Realizamos uma imersão completa no seu caso, seja online ou presencial, para traçar as melhores estratégias.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="relative inline-block mb-4">
+                            <i data-lucide="send" class="h-16 w-16 text-brand-accent"></i>
+                             <span class="absolute -top-2 -right-2 bg-brand-primary text-white h-8 w-8 rounded-full flex items-center justify-center text-lg font-bold border-4 border-white">3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-primary mt-4 mb-2">Plano e Acompanhamento</h3>
+                        <p class="text-gray-600">Você recebe seu plano 100% personalizado e iniciamos o acompanhamento contínuo para garantir sua evolução.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-brand-light"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Seção Diferenciais -->
+        <section id="diferenciais" class="py-20 md:py-32 bg-brand-light relative overflow-hidden">
+            <!-- Imagem decorativa (visível apenas em telas 2xl) -->
+            <img src="/imgs/nado.png" alt="Nadador" class="hidden 2xl:block absolute left-0 top-20 -translate-x-1/6 opacity-50 pointer-events-none rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/300x300/transparent/000000?text=Imagem';">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Por que escolher meu acompanhamento?</h2>
+                    <p class="text-gray-600">Meu foco é em você e nos seus resultados, com uma abordagem que vai além do plano alimentar.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="text-center p-6">
+                        <i data-lucide="award" class="h-12 w-12 text-brand-accent mx-auto mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-primary mb-2">Plano 100% Personalizado</h3>
+                        <p class="text-gray-600">Não uso dietas prontas. Seu plano é criado do zero, respeitando sua rotina, preferências e metas.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <i data-lucide="heart-pulse" class="h-12 w-12 text-brand-accent mx-auto mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-primary mb-2">Saúde como Prioridade</h3>
+                        <p class="text-gray-600">Acredito que a verdadeira performance é sustentada por uma saúde integral, de dentro para fora.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <i data-lucide="messages-square" class="h-12 w-12 text-brand-accent mx-auto mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-primary mb-2">Suporte e Agilidade</h3>
+                        <p class="text-gray-600">Estou disponível para tirar dúvidas e fazer ajustes, garantindo que você se sinta seguro e motivado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Depoimentos -->
+        <section id="depoimentos" class="py-20 md:py-32 bg-white relative overflow-hidden">
+            <!-- Imagem decorativa (visível apenas em telas 2xl) -->
+            <img src="/imgs/iron.png" alt="Ganhador Ironman" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/6 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+            <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-brand-light"></path>
+                </svg>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Histórias de Transformação</h2>
+                    <p class="text-gray-600">Resultados que vão além dos números, impactando a vida e a performance.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-3xl flex flex-col items-center text-center">
+                        <img src="/imgs/joao.png" class="rounded-full w-24 h-24 mb-4 border-4 border-brand-light" alt="Foto do paciente 1">
+                        <h3 class="font-bold text-xl text-brand-primary">João S. - Triatleta</h3>
+                        <p class="text-gray-600 mt-4 flex-grow">"Antes de começar com a Natália, eu sentia que tinha batido num teto de performance... Consegui baixar meu tempo na maratona do Ironman e me sinto mais forte do que nunca."</p>
+                        <button onclick="openModal('modal1')" class="text-brand-primary font-semibold mt-4 hover:underline">Ler história completa</button>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-3xl flex flex-col items-center text-center">
+                        <img src="/imgs/mari.png" class="rounded-full w-24 h-24 mb-4 border-4 border-brand-light" alt="Foto da paciente 2">
+                        <h3 class="font-bold text-xl text-brand-primary">Mariana P. - Corredora</h3>
+                        <p class="text-gray-600 mt-4 flex-grow">"Eu sempre tive problemas com desconforto gástrico em provas longas... consegui correr minha primeira ultra sem nenhum problema. Foi uma virada de chave na minha confiança."</p>
+                        <button onclick="openModal('modal2')" class="text-brand-primary font-semibold mt-4 hover:underline">Ler história completa</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato/CTA Final -->
+        <section id="contato" class="py-20 md:py-32 bg-brand-light-alt relative overflow-hidden">
+            <!-- Imagem decorativa (visível apenas em telas 2xl) -->
+            <img src="/imgs/nat2.png" alt="Foto da Natália" class="hidden 2xl:block absolute left-0 bottom-0 -translate-x-1/4 opacity-80 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+            <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-white"></path>
+                </svg>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Vamos começar a sua transformação?</h2>
+                    <p class="text-gray-600">Envie uma mensagem ou entre em contato pelos canais abaixo.</p>
+                </div>
+                <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 max-w-5xl mx-auto grid md:grid-cols-2 gap-y-10 gap-x-12 relative z-10">
+                    <form id="contact-form" class="text-left">
+                        <h3 class="text-2xl font-bold text-brand-primary mb-6">Deixe sua mensagem</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
+                                <input type="text" id="name" name="name" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded-xl w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-brand-primary" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded-xl w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-brand-primary" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Mensagem</label>
+                                <textarea id="message" name="message" rows="4" class="bg-gray-50 appearance-none border-2 border-gray-200 rounded-xl w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-brand-primary" required></textarea>
+                            </div>
+                            <div class="text-center pt-2">
+                                <button type="submit" class="bg-brand-primary text-white font-bold py-3 px-6 rounded-full text-lg hover:bg-opacity-90 transition-colors flex items-center justify-center shadow-lg w-full">
+                                    <i data-lucide="send" class="h-5 w-5 mr-3"></i>
+                                    Enviar via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="space-y-6 text-left">
+                        <h3 class="text-2xl font-bold text-brand-primary mb-6">Informações de Contato</h3>
+                        <div class="flex items-start space-x-4">
+                            <i data-lucide="phone" class="h-6 w-6 text-brand-accent mt-1 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold">Telefone</h4>
+                                <a href="https://wa.me/5548988358001" target="_blank" class="text-gray-600 hover:text-brand-primary">(48) 98835-8001</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i data-lucide="mail" class="h-6 w-6 text-brand-accent mt-1 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <a href="mailto:nataliavfreire@icloud.com" class="text-gray-600 hover:text-brand-primary">nataliavfreire@icloud.com</a>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                            <i data-lucide="map-pin" class="h-6 w-6 text-brand-accent mt-1 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold">Atendimentos</h4>
+                                <p class="text-gray-600">Florianópolis e Balneário Camboriú</p>
+                                <p class="text-gray-600">Online - Todo o Brasil</p>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                             <a href="https://www.instagram.com/nataliavfreire" target="_blank" class="bg-brand-accent text-white font-semibold py-3 px-6 rounded-full shadow-md hover:scale-105 transition-transform text-sm inline-flex items-center">
+                                <i data-lucide="instagram" class="h-5 w-5 mr-2"></i>
+                                Siga no Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Redesenhado -->
+    <footer class="py-16 md:py-20 bg-brand-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-2 gap-y-12 lg:gap-x-8 items-center mb-16">
+                <!-- Grupo 1: Avaliações -->
+                <div class="lg:border-r lg:border-brand-primary/30 lg:pr-8">
+                    <h2 class="text-center text-3xl md:text-4xl font-bold text-brand-primary mb-8">O que dizem por aí</h2>
+                    <div class="swiper max-w-md mx-auto">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide text-center p-4">
+                                <i data-lucide="quote" class="h-8 w-8 text-brand-primary/50 mx-auto mb-4"></i>
+                                <p class="text-gray-700 italic text-lg">"Atendimento impecável e super atenciosa. Recomendo demais!"</p>
+                                <p class="font-script text-3xl mt-4 text-brand-primary">- Carlos F.</p>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide text-center p-4">
+                                <i data-lucide="quote" class="h-8 w-8 text-brand-primary/50 mx-auto mb-4"></i>
+                                <p class="text-gray-700 italic text-lg">"A melhor nutri que já tive! Entendeu exatamente o que eu precisava."</p>
+                                <p class="font-script text-3xl mt-4 text-brand-primary">- Ana Júlia M.</p>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide text-center p-4">
+                                <i data-lucide="quote" class="h-8 w-8 text-brand-primary/50 mx-auto mb-4"></i>
+                                <p class="text-gray-700 italic text-lg">"Resultados visíveis em poucas semanas. Muito profissional."</p>
+                                <p class="font-script text-3xl mt-4 text-brand-primary">- Ricardo G.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination mt-8 relative"></div>
+                    </div>
+                </div>
+
+                <!-- Grupo 2: Logo e Informações -->
+                <div class="flex flex-col items-center lg:pl-8 space-y-6">
+                    <a href="#">
+                         <img src="/imgs/1.png" alt="Logo Natália Freire" class="h-auto w-auto" onerror="this.onerror=null;this.src='https://placehold.co/250x80/transparent/98765B?text=Logo';">
+                    </a>
+                    <div class="flex items-center space-x-4">
+                        <a href="https://www.instagram.com/nataliavfreire" target="_blank" class="text-brand-primary hover:opacity-75 transition-opacity">
+                            <i data-lucide="instagram" class="h-7 w-7"></i>
+                        </a>
+                        <p class="text-sm text-brand-primary opacity-80">CRN-5/13789/P</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center border-t border-brand-primary/20 pt-8">
+                <p class="text-xs text-gray-600 mb-2">&copy; 2025 Natália Freire Nutricionista. Todos os direitos reservados.</p>
+                <p class="text-xs text-gray-600">Feito com 💙 por <a href="https://www.southsea.com.br/" target="_blank" class="hover:text-brand-primary font-bold transition-colors">South Sea</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modais para Depoimentos -->
+    <div id="modal1" class="modal fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-[70]">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full relative">
+            <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-brand-primary mb-4">História do João S.</h3>
+            <p class="text-gray-600">
+                "Antes de começar com a Natália, eu sentia que tinha batido num teto de performance. Eu treinava forte, mas chegava no dia da prova e faltava gás. O plano dela não só ajustou minha energia durante os trenos, mas melhorou minha recuperação de uma forma que eu não achava possível. Aprendi a comer o que meu corpo realmente precisava, nos momentos certos. Consegui baixar meu tempo na maratona do Ironman em quase 20 minutos e, o mais importante, terminei a prova me sentindo inteiro, pronto pra outra. Foi uma mudança completa de mentalidade e de resultados."
+            </p>
+        </div>
+    </div>
+    <div id="modal2" class="modal fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-[70]">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full relative">
+            <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-brand-primary mb-4">História da Mariana P.</h3>
+            <p class="text-gray-600">
+                "Meu maior medo em provas longas sempre foi meu estômago. Qualquer gel ou alimento diferente me causava um desconforto terrível e acabava com minha corrida. A Natália teve um olhar super atento para minha saúde intestinal desde o primeiro dia. Fizemos um trabalho de base, fortalecendo meu sistema digestivo antes de pensar em performance. Ela me ensinou estratégias de hidratação e nutrição que funcionavam PARA MIM. Com isso, consegui correr minha primeira ultra de 50km sem nenhum problema. Foi uma virada de chave na minha confiança e no meu prazer em correr."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Inicializa os ícones
+        lucide.createIcons();
+        
+        // Lógica do Menu Lateral (Sidebar)
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const navLinks = document.querySelectorAll('#sidebar a');
+
+        function openSidebar() {
+            sidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            menuBtn.classList.add('hidden'); // Oculta o botão de menu
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+            menuBtn.classList.remove('hidden'); // Mostra o botão de menu
+            document.body.style.overflow = 'auto';
+        }
+
+        menuBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Animações de Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Lógica do Formulário de Contato para WhatsApp
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const phone = '5548988358001';
+            const text = `Olá, Natália! Meu nome é ${name} (${email}).\n\nMensagem: ${message}`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        // Carrossel Swiper.js
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Lógica dos Modais
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if(!modal.classList.contains('hidden')) closeModal(modal.id);
+                });
+            }
+        });
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(event) {
+                if(event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+    </script>
+</body>
+</ht
