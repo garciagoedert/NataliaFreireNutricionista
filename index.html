@@ -59,11 +59,12 @@
             letter-spacing: 0.05em;
         }
 
-        /* NOVAS CLASSES DE BOTÃO PARA CORRIGIR O HOVER */
+        /* CLASSES DE BOTÃO PARA CORRIGIR O HOVER */
         .btn-ghost-white {
             background-color: transparent;
             color: white;
             border: 2px solid white;
+            transition: all 0.3s;
         }
         .btn-ghost-white:hover {
             background-color: white;
@@ -73,6 +74,7 @@
             background-color: transparent;
             color: #98765B; /* brand-primary */
             border: 2px solid #98765B;
+            transition: all 0.3s;
         }
         .btn-ghost-primary:hover {
             background-color: #98765B;
@@ -154,8 +156,8 @@
             <i data-lucide="x" class="h-6 w-6"></i>
         </button>
         <nav class="flex flex-col space-y-6 text-lg mt-12">
-            <a href="/sobre.html" class="text-gray-700 hover:text-brand-primary transition-colors">Sobre</a>
-            <a href="/consultas.html" class="text-gray-700 hover:text-brand-primary transition-colors">Serviços</a>
+            <a href="sobre.html" class="text-gray-700 hover:text-brand-primary transition-colors">Sobre</a>
+            <a href="consultas.html" class="text-gray-700 hover:text-brand-primary transition-colors">Serviços</a>
             <a href="#contato" class="text-gray-700 hover:text-brand-primary transition-colors">Contato</a>
         </nav>
         <div class="mt-auto">
@@ -173,13 +175,12 @@
                 </a>
             </div>
 
-            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen pt-32 pb-12 md:pt-0 md:pb-0">
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center min-h-screen pt-28 pb-16 md:pt-0 md:pb-0">
                 <!-- Conteúdo de texto da Hero -->
                 <div class="text-center md:text-left w-full md:w-5/12 lg:w-1/2">
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Performance que começa na sua saúde</h1>
                     <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto md:mx-0">Nutrição esportiva e funcional para atletas que buscam superar limites com equilíbrio e bem-estar.</p>
-                    <!-- BOTÃO DO HERO CORRIGIDO -->
-                    <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="btn-ghost-white font-semibold text-lg py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 inline-block">Agende sua Consulta</a>
+                    <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="btn-ghost-white font-semibold text-lg py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg transform hover:scale-105 inline-block">Agende sua Consulta</a>
                 </div>
                 <!-- Imagem da Hero (visível em tablet e desktop) -->
                 <div class="w-full md:w-7/12 lg:w-1/2 hidden md:flex justify-center lg:justify-end self-end">
@@ -189,7 +190,7 @@
         </section>
 
         <!-- Seção Sobre -->
-        <section id="sobre" class="py-20 md:py-32 bg-white relative">
+        <section id="sobre" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 md:gap-16 items-center reveal z-10 relative">
                 <div class="order-2 md:order-1 text-center md:text-left">
                     <img src="/imgs/nf.png" alt="Monograma Natália Freire" class="mx-auto md:mx-0 mb-6 h-24 w-24 rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/150x150/E6DED1/98765B?text=NF';">
@@ -210,7 +211,7 @@
         </section>
 
         <!-- Seção Serviços -->
-        <section id="servicos" class="py-20 md:py-32 bg-brand-light relative overflow-hidden">
+        <section id="servicos" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light relative overflow-hidden">
             <!-- Imagem decorativa (visível apenas em telas 2xl) -->
             <img src="/imgs/bike.png" alt="Ciclistas" class="hidden 2xl:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
@@ -225,8 +226,7 @@
                             <h3 class="text-2xl font-bold mb-3 text-brand-primary">Consulta Online</h3>
                             <p class="text-gray-600 mb-8">A mesma qualidade e atenção, com a praticidade do atendimento remoto.</p>
                         </div>
-                        <!-- BOTÃO "SAIBA MAIS" CORRIGIDO -->
-                        <a href="consultas.html#online" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-sm mt-4 inline-block">Saiba Mais</a>
+                        <a href="consultas.html#online" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full shadow-sm mt-4 inline-block">Saiba Mais</a>
                     </div>
                     <div class="bg-white p-8 rounded-3xl shadow-lg text-center flex flex-col">
                         <div class="flex-grow">
@@ -234,8 +234,7 @@
                             <h3 class="text-2xl font-bold text-brand-primary mb-3">Consulta Presencial</h3>
                             <p class="text-gray-600 mb-8">Avaliação corporal completa por dobras cutâneas para máxima precisão.</p>
                         </div>
-                        <!-- BOTÃO "SAIBA MAIS" CORRIGIDO -->
-                        <a href="consultas.html#presencial" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-sm mt-4 inline-block">Saiba Mais</a>
+                        <a href="consultas.html#presencial" class="btn-ghost-primary font-semibold py-3 px-6 rounded-full shadow-sm mt-4 inline-block">Saiba Mais</a>
                     </div>
                 </div>
             </div>
@@ -247,7 +246,7 @@
         </section>
         
         <!-- Seção Como Funciona -->
-        <section id="como-funciona" class="py-20 md:py-32 bg-white relative overflow-hidden">
+        <section id="como-funciona" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative overflow-hidden">
             <!-- Imagem decorativa (visível apenas em telas 2xl) -->
             <img src="/imgs/comida.png" alt="Prato Saudável" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x400/transparent/000000?text=Imagem';">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
@@ -290,7 +289,7 @@
         </section>
 
         <!-- Seção Diferenciais -->
-        <section id="diferenciais" class="py-20 md:py-32 bg-brand-light relative overflow-hidden">
+        <section id="diferenciais" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light relative overflow-hidden">
             <!-- Imagem decorativa (visível apenas em telas 2xl) -->
             <img src="/imgs/nado.png" alt="Nadador" class="hidden 2xl:block absolute left-0 top-20 -translate-x-1/6 opacity-50 pointer-events-none rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/300x300/transparent/000000?text=Imagem';">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal">
@@ -319,7 +318,7 @@
         </section>
 
         <!-- Seção Depoimentos -->
-        <section id="depoimentos" class="py-20 md:py-32 bg-white relative overflow-hidden">
+        <section id="depoimentos" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative overflow-hidden">
             <!-- Imagem decorativa (visível apenas em telas 2xl) -->
             <img src="/imgs/iron.png" alt="Ganhador Ironman" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/6 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
             <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
@@ -350,7 +349,7 @@
         </section>
 
         <!-- Seção Contato/CTA Final -->
-        <section id="contato" class="py-20 md:py-32 bg-brand-light-alt relative overflow-hidden">
+        <section id="contato" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light-alt relative overflow-hidden">
             <!-- Imagem decorativa (visível apenas em telas 2xl) -->
             <img src="/imgs/nat2.png" alt="Foto da Natália" class="hidden 2xl:block absolute left-0 bottom-0 -translate-x-1/4 opacity-80 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
             <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
@@ -607,4 +606,4 @@
         });
     </script>
 </body>
-</ht
+</html>
