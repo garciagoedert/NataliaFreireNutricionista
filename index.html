@@ -25,7 +25,6 @@
             font-family: 'Arimo', sans-serif; 
             background-color: #F8F6F4; 
             color: #333; 
-            /* overflow-x: hidden; removido conforme solicitado */
         }
         h1, h2, h3, h4, h5, h6 { 
             font-family: 'Lora', serif; 
@@ -97,12 +96,7 @@
             background-position: center; 
             position: relative; 
         }
-        .hero-bg::before { 
-            content: ''; 
-            position: absolute; 
-            top: 0; left: 0; right: 0; bottom: 0; 
-            background-color: rgba(0, 0, 0, 0.5); 
-        }
+        /* O bloco .hero-bg::before foi removido daqui para tirar o filtro cinza */
         .hero-content { 
             position: relative; 
             z-index: 10; 
@@ -127,7 +121,7 @@
         .section-divider svg {
             position: relative;
             display: block;
-            width: 100%; /* CORRIGIDO: de calc(100% + 1.3px) para 100% */
+            width: 100%;
             height: 90px;
         }
 
@@ -156,6 +150,7 @@
             <i data-lucide="x" class="h-6 w-6"></i>
         </button>
         <nav class="flex flex-col space-y-6 text-lg mt-12">
+            <a href="#home" class="text-gray-700 hover:text-brand-primary transition-colors">Início</a>
             <a href="sobre.html" class="text-gray-700 hover:text-brand-primary transition-colors">Sobre</a>
             <a href="consultas.html" class="text-gray-700 hover:text-brand-primary transition-colors">Serviços</a>
             <a href="#contato" class="text-gray-700 hover:text-brand-primary transition-colors">Contato</a>
@@ -169,20 +164,23 @@
     <div class="overflow-x-hidden">
         <main id="main-content">
             <!-- Seção Hero -->
-            <section id="home" class="hero-bg text-white relative" style="background-image: url('/imgs/fundo.png');">
+            <section id="home" class="hero-bg text-white relative" style="background-image: url('/imgs/fundo1.png');">
+                <!-- Efeito de sombra no texto para melhor legibilidade -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                
                 <!-- Logo movida para o Hero -->
                 <div class="absolute top-0 left-0 p-4 sm:p-6 lg:p-8 z-20">
                     <a href="#">
-                        <img src="/imgs/nome2.png" alt="Logo Natália Freire" class="h-12 sm:h-14 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/180x50/transparent/FFFFFF?text=Logo';">
+                        <img src="/imgs/nome.png" alt="Logo Natália Freire" class="h-12 sm:h-14 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/180x50/transparent/FFFFFF?text=Logo';">
                     </a>
                 </div>
 
                 <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center min-h-screen pt-28 pb-16 md:pt-0 md:pb-0">
                     <!-- Conteúdo de texto da Hero -->
                     <div class="text-center md:text-left w-full md:w-5/12 lg:w-1/2">
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Performance que começa na sua saúde</h1>
-                        <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto md:mx-0">Nutrição esportiva e funcional para atletas que buscam superar limites com equilíbrio e bem-estar.</p>
-                        <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="btn-ghost-white font-semibold text-lg py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg transform hover:scale-105 inline-block">Agende sua Consulta</a>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Performance que começa na sua saúde</h1>
+                        <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto md:mx-0" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Nutrição esportiva e funcional para atletas que buscam superar limites com equilíbrio e bem-estar.</p>
+                        <a href="https://wa.me/5548988358001?text=Ol%C3%A1!+Gostaria+de+agendar+uma+consulta." target="_blank" class="btn-ghost-white font-semibold text-lg py-3 px-8 sm:py-4 sm:px-10 rounded-full transform hover:scale-105 inline-block">Agende sua Consulta</a>
                     </div>
                     <!-- Imagem da Hero (visível em tablet e desktop) -->
                     <div class="w-full md:w-7/12 lg:w-1/2 hidden md:flex justify-center lg:justify-end self-end">
@@ -214,8 +212,8 @@
 
             <!-- Seção Serviços -->
             <section id="servicos" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light relative overflow-hidden">
-                <!-- Imagem decorativa (visível apenas em telas 2xl) -->
-                <img src="/imgs/bike.png" alt="Ciclistas" class="hidden 2xl:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+                <!-- Imagem decorativa -->
+                <img src="/imgs/bike.png" alt="Ciclistas" class="hidden xl:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
                     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Consultas e Acompanhamento</h2>
@@ -249,8 +247,8 @@
             
             <!-- Seção Como Funciona -->
             <section id="como-funciona" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative overflow-hidden">
-                <!-- Imagem decorativa (visível apenas em telas 2xl) -->
-                <img src="/imgs/comida.png" alt="Prato Saudável" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x400/transparent/000000?text=Imagem';">
+                <!-- Imagem decorativa -->
+               <br><br><br><br><br> <img src="/imgs/comida.png" alt="Prato Saudável" class="hidden xl:block absolute right-0 top-20 translate-x-1/4 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x400/transparent/000000?text=Imagem';">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal z-10 relative">
                     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Seu Caminho para a Alta Performance</h2>
@@ -291,9 +289,9 @@
             </section>
 
             <!-- Seção Diferenciais -->
-            <section id="diferenciais" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light relative overflow-hidden">
-                <!-- Imagem decorativa (visível apenas em telas 2xl) -->
-                <img src="/imgs/nado.png" alt="Nadador" class="hidden 2xl:block absolute left-0 top-20 -translate-x-1/6 opacity-50 pointer-events-none rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/300x300/transparent/000000?text=Imagem';">
+            <section id="diferenciais" class="py-20 sm:py-24 md:py-28 lg:py-40 bg-brand-light relative overflow-hidden">
+                <!-- Imagem decorativa -->
+             <br><br><br>   <img src="/imgs/nado.png" alt="Nadador" class="hidden xl:block absolute left-0 top-8 xl:-translate-x-1/4 2xl:-translate-x-[15%] opacity-50 pointer-events-none rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/300x300/transparent/000000?text=Imagem';">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 reveal">
                     <div class="text-center max-w-3xl mx-auto mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">Por que escolher meu acompanhamento?</h2>
@@ -321,8 +319,8 @@
 
             <!-- Seção Depoimentos -->
             <section id="depoimentos" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-white relative overflow-hidden">
-                <!-- Imagem decorativa (visível apenas em telas 2xl) -->
-                <img src="/imgs/iron.png" alt="Ganhador Ironman" class="hidden 2xl:block absolute right-0 top-20 translate-x-1/6 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+                <!-- Imagem decorativa -->
+               <br><br><br><br> <img src="/imgs/iron.png" alt="Ganhador Ironman" class="hidden xl:block absolute right-0 top-20 translate-x-1/3 2xl:translate-x-1/6 opacity-50 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
                 <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-brand-light"></path>
@@ -352,8 +350,8 @@
 
             <!-- Seção Contato/CTA Final -->
             <section id="contato" class="py-20 sm:py-24 md:py-28 lg:py-32 bg-brand-light-alt relative overflow-hidden">
-                <!-- Imagem decorativa (visível apenas em telas 2xl) -->
-                <img src="/imgs/nat2.png" alt="Foto da Natália" class="hidden 2xl:block absolute left-0 bottom-0 -translate-x-1/4 opacity-80 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
+                <!-- Imagem decorativa -->
+                <img src="/imgs/nat2.png" alt="Foto da Natália" class="hidden xl:block absolute left-0 bottom-0 xl:-translate-x-1/3 2xl:-translate-x-1/4 opacity-80 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x600/transparent/000000?text=Imagem';">
                 <div class="section-divider" style="transform: rotate(0); top: -1px; bottom: auto;">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill fill-white"></path>
